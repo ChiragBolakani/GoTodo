@@ -45,7 +45,7 @@ func (s *Service) DeleteItem(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.WriteHeader(201)
+	w.WriteHeader(200)
 	responseFormat["success"] = true
 	responseFormat["data"] = item
 	json.NewEncoder(w).Encode(responseFormat)
