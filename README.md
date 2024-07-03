@@ -9,7 +9,6 @@ Supports:
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
 To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
@@ -29,17 +28,24 @@ This project requires the following to be installed
    docker run --name some-scylla -p 9042:9042 --hostname some-scylla -d scylladb/scylla --smp 1
    ```
    **_NOTE:_**  This command will start a Scylla single-node cluster in developer mode limited by a single CPU core.
-   
-4. Configure .env
+3. Clone this repository
    ```sh
-   npm install
+   git clone https://github.com/ChiragBolakani/GoTodo.git
    ```
-5. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
+4. Configure .env
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+   ```env
+   SERVER_PORT=
+   
+   SCYLLA_DB_HOSTS=
+   SCYLLA_DB_DATABASE=
+   SCYLLA_DB_USERNAME=
+   SCYLLA_DB_PASSWORD=
+   ```
+5. Run the project
+   ```sh
+   go run .\cmd\server\main.go
+   ```
 
 ## API Documentation
 The API provides the following routes:
