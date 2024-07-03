@@ -7,6 +7,23 @@ Supports:
 - Time Sorted
 - Pagination
 
+## Design Explanation
+
+The structure of the project encourages modularity and leverages packages in Go.
+The idea is to ensure Idempotency.
+
+```bash
+├───cmd
+│   └───server         # main.go file to run the server
+└───pkg
+    ├───config         # contains all the configurations for the project
+    ├───db
+    │   └───schema     # schema.cql file to geneate the db shcema
+    ├───middlewares    # middleware for handlers
+    ├───models         # models for the tables
+    └───service        # services/handlers for endpoints
+```
+
 ## Getting Started
 
 To get a local copy up and running follow these simple example steps.
