@@ -32,6 +32,19 @@ This project requires the following to be installed
    ```sh
    git clone https://github.com/ChiragBolakani/GoTodo.git
    ```
+4. Create keyspace and tables
+   Enter into the container cqlsh
+   ```sh
+   docker exec -it <container_tag> cqlsh
+   ```
+
+   Run the .cql file
+   ```sh
+   SOURCE /path/to/pkg/db/schema/schema.cql
+   ```
+
+   OR copy paste the commands from schema.cql file inside your docker container
+   
 4. Configure .env
 
    ```env
@@ -46,6 +59,29 @@ This project requires the following to be installed
    ```sh
    go run .\cmd\server\main.go
    ```
+
+## Schema 
+
+```cql
+CREATE KEYSPACE todo WITH replication = {'class': 'SimpleStrategy', 'replication_factor': '1'}  AND durable_writes = true;
+
+CREATE TABLE todo.users (
+    user_id timeuuid PRIMARY KEY,
+    first_name text,
+    last_name text
+);
+
+CREATE TABLE todo.items (
+    user_id timeuuid,
+    id timeuuid,
+    created_at timestamp,
+    description text,
+    status boolean,
+    title text,
+    updated_at timestamp,
+    PRIMARY KEY ((user_id), id)
+);
+```
 
 ## API Documentation
 The API provides the following routes:
@@ -322,7 +358,7 @@ Connection: keep-alive
 
 response : 
 ```http
-HTTP/1.1 201 Created
+HTTP/1.1 200 OK
 Content-Type: application/json
 Date: Wed, 03 Jul 2024 12:21:27 GMT
 Content-Length: 268
